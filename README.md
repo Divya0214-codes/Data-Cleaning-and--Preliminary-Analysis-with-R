@@ -216,7 +216,7 @@ Poor Data Quality
                      │ • DOCX Report           │
                      └─────────────────────────┘
 
-📊 Dataset
+#📊 Dataset
 
 The project uses the Titanic passenger dataset.
 
@@ -241,7 +241,8 @@ Ticket
 Fare
 Cabin
 Embarked
-🔎 Advanced Data Profiling
+
+#🔎 Advanced Data Profiling
 
 Before modifying the dataset, the project performs an initial quality assessment.
 
@@ -260,7 +261,6 @@ Potential outliers
 Categorical variables
 
 Example:
-
 dim(data)
 str(data)
 summary(data)
@@ -268,7 +268,7 @@ colSums(is.na(data))
 
 This creates a baseline before preprocessing begins.
 
-🚨 Data Quality Report
+#🚨 Data Quality Report
 
 Initial missing-value analysis:
 
@@ -284,73 +284,56 @@ Missing Data
      ├── Moderate Missingness ──→ Statistical Imputation
      │
      └── Very High Missingness ──→ Feature Extraction / Removal
-🧹 Advanced Missing-Value Treatment
+
+#🧹 Advanced Missing-Value Treatment
 Age
-
 Instead of using only the global median, missing ages are estimated using passenger characteristics such as:
-
 Pclass + Sex
-
-This provides a more structured imputation strategy.
-
+This provides a more structured imputation strategy
 Embarked
-
 Only two values are missing.
-
 The mode is used for replacement.
-
 Cabin
-
 Because Cabin contains a very high percentage of missing observations, the project extracts a useful indicator:
-
 CabinKnown
-
 This preserves information about whether cabin information was available.
 
-🔁 Duplicate Detection
+#🔁 Duplicate Detection
 
 Duplicate records are checked before analysis.
-
 sum(duplicated(data))
-
 If duplicate observations exist, they are removed to avoid bias in statistical calculations.
 
-📈 Advanced Outlier Detection
+#📈 Advanced Outlier Detection
 
 Outliers are detected using the Interquartile Range method.
 
 Formula
 IQR = Q3 - Q1
-
 Lower Bound = Q1 - 1.5 × IQR
-
 Upper Bound = Q3 + 1.5 × IQR
 
 Analyzed variables:
-
 Age
 Fare
 SibSp
 Parch
-
 The analysis identifies potential extreme observations, particularly in Fare.
 
-💰 Robust Outlier Treatment
+#💰 Robust Outlier Treatment
 
 Instead of automatically deleting extreme observations, Fare values are treated using percentile capping.
-
 The upper threshold is based on the 99th percentile.
 
 This approach:
-
 Retains observations
 Reduces extreme-value influence
 Prevents unnecessary data loss
 Maintains dataset size
-🧬 Feature Engineering
+
+#🧬 Feature Engineering
 
 Feature engineering converts existing information into more useful analytical variables.
-
 FamilySize
 FamilySize = SibSp + Parch + 1
 IsAlone
@@ -359,26 +342,23 @@ IsAlone
 Title Extraction
 
 Passenger names are processed to extract titles such as:
-
 Mr
 Mrs
 Miss
 Master
 Rare Titles
 AgeGroup
-
 Passengers are categorized into age groups to simplify demographic analysis.
 
 Example:
-
 Child
 Young Adult
 Adult
 Senior
-🔢 Advanced Categorical Encoding
+
+#🔢 Advanced Categorical Encoding
 
 The project demonstrates several encoding techniques.
-
 Factor Encoding
 data$Sex <- as.factor(data$Sex)
 Binary Encoding
@@ -386,24 +366,20 @@ female → 0
 male   → 1
 
 Feature:
-
 Sex_male
 One-Hot Encoding
 
 Embarkation categories are converted into dummy variables:
-
 Embarked_C
 Embarked_Q
 Embarked_S
-📏 Feature Scaling
 
+#📏 Feature Scaling
 Two different numerical scaling methods are demonstrated.
-
 Min-Max Normalization
 X' = (X - Xmin) / (Xmax - Xmin)
 
 Generated features:
-
 Age_norm
 Fare_norm
 Z-Score Standardization
@@ -416,10 +392,9 @@ Fare_z
 
 This provides standardized features suitable for many statistical and machine-learning algorithms.
 
-📊 Exploratory Data Analysis
+#📊 Exploratory Data Analysis
 
 The project investigates relationships between passenger characteristics and survival.
-
 Major analysis areas
 Survival Distribution
        │
@@ -429,7 +404,8 @@ Survival Distribution
        ├── Family Size
        ├── Fare
        └── Embarkation
-📌 Key Findings
+
+#📌 Key Findings
 Overall Survival
 38.38%
 Survival by Gender
@@ -441,15 +417,12 @@ Class	Survival
 First	62.96%
 Second	47.28%
 Third	24.24%
-
 These results indicate substantial differences in survival across passenger characteristics.
 
-🔗 Correlation Analysis
+#🔗 Correlation Analysis
 
 A correlation matrix is created for relevant numerical and encoded variables.
-
 Variables include:
-
 Survived
 Pclass
 Age
@@ -461,15 +434,12 @@ IsAlone
 Sex_male
 
 The selected analysis identifies Sex_male as having the strongest relationship with Survived among the analyzed numerical/encoded variables, with correlation approximately:
-
 r ≈ 0.543
-
 Important: Correlation indicates association, not causation.
 
-📊 Visualization Layer
+#📊 Visualization Layer
 
 The project automatically creates analytical charts.
-
 01_missing_values.png
 02_age_distribution.png
 03_fare_boxplot.png
@@ -488,10 +458,10 @@ Survival by Class	Analyze socioeconomic relationship
 Correlation Heatmap	Identify numerical relationships
 Age Density	Compare age distributions
 Family Size	Analyze family-related survival patterns
-🧪 Data Validation
+
+#🧪 Data Validation
 
 The project can validate the processed dataset by checking:
-
 ✔ Remaining missing values
 ✔ Dataset dimensions
 ✔ Data types
@@ -506,20 +476,18 @@ sum(is.na(data))
 sum(duplicated(data))
 dim(data)
 str(data)
-📤 Automated Output Generation
+
+#📤 Automated Output Generation
 
 The R script automatically creates:
-
 outputs/
 plots/
 
 and saves:
-
 outputs/titanic_cleaned.csv
-
 This makes the workflow reproducible without manually exporting every result.
 
-📁 Repository Structure
+#📁 Repository Structure
 Titanic-Data-Cleaning-R/
 │
 ├── README.md
@@ -546,7 +514,8 @@ Titanic-Data-Cleaning-R/
 │
 └── report/
     └── Titanic_Data_Cleaning_and_Preliminary_Analysis_R_Report.docx
-🛠️ Technology Stack
+
+#🛠️ Technology Stack
 Programming
 R
 Environment
@@ -565,8 +534,8 @@ ggplot2	Visualization
 reshape2	Data transformation
 RStudio	Development
 VS Code	Alternative development environment
-⚙️ Installation
 
+#⚙️ Installation
 Install the required packages:
 
 install.packages(c(
@@ -576,31 +545,26 @@ install.packages(c(
 ))
 
 Load them:
-
 library(ggplot2)
 library(dplyr)
 library(reshape2)
-▶️ Run the Project
+
+#▶️ Run the Project
 RStudio
-
 Place the dataset here:
-
 data/titanic.csv
 
 Then execute:
-
 source("Titanic_Data_Cleaning.R")
 VS Code / Terminal
 
-Navigate to the repository:
-
+Navigate to the repository
 cd "E:\Yuva Intern\R_Data_Cleaning"
 
 Run:
-
 Rscript Titanic_Data_Cleaning.R
-🔄 Reproducible Pipeline
 
+#🔄 Reproducible Pipeline
 The project follows a repeatable process:
 
 Input CSV
@@ -618,11 +582,9 @@ EDA
 Charts
    ↓
 Clean CSV
-
 A user can replace the input dataset and rerun the pipeline after adapting the column-specific processing logic.
 
-📈 Project Maturity
-
+#📈 Project Maturity
 This project demonstrates several levels of analytics capability:
 
 Level 1 — Data Handling
@@ -648,14 +610,13 @@ Level 5 — Data Communication
 ✔ Findings
 ✔ Analytical Report
 ✔ Exported Dataset
-🚀 Advanced Future Enhancements
+
+#🚀 Advanced Future Enhancements
 
 The project can be extended into a complete machine-learning pipeline.
-
 Machine Learning
 
 Potential models:
-
 Logistic Regression
 Decision Tree
 Random Forest
@@ -665,7 +626,6 @@ Gradient Boosting
 Model Evaluation
 
 Add:
-
 Accuracy
 Precision
 Recall
@@ -674,45 +634,35 @@ ROC-AUC
 Confusion Matrix
 Cross-Validation
 Advanced Feature Selection
-
 Future versions can include:
-
 Correlation-based Selection
 Recursive Feature Elimination
 Feature Importance
 Permutation Importance
 Interactive Analytics
-
 The project could be extended using:
-
 Shiny
 Plotly
 DT
 R Markdown
 Quarto
-
 to create an interactive Titanic analytics dashboard.
 
-🔐 Data & Privacy
+#🔐 Data & Privacy
 
 This project uses a public Titanic dataset and does not process private user information.
-
 For real-world projects, sensitive data should be handled according to organizational security and privacy requirements.
 
-⚠️ Limitations
+#⚠️ Limitations
 
 This project focuses on data cleaning and preliminary analysis.
-
 It does not currently represent a production-grade machine-learning deployment.
-
 Some preprocessing decisions are dataset-specific and should be reconsidered when applying the pipeline to a different dataset.
-
 Correlation analysis should not be interpreted as evidence of causation.
 
-📚 Learning Outcomes
+#📚 Learning Outcomes
 
 This project provides practical experience with:
-
 R Programming
 Data Cleaning
 Data Quality Assessment
@@ -730,41 +680,33 @@ Data Visualization
 Data Export
 Report Generation
 Reproducible Analytics
-💼 Portfolio Value
+
+#💼 Portfolio Value
 
 This project demonstrates skills relevant to:
-
 Data Analyst
 Junior Data Analyst
 Data Science Intern
 Business Analyst
 Junior Data Scientist
 Analytics Intern
-
 It demonstrates the complete journey from:
 
 Raw Data → Clean Data → Transformed Data → Analysis → Insights → Report
 
-📄 Project Documentation
-
+#📄 Project Documentation
 A detailed report is available at:
-
 report/Titanic_Data_Cleaning_and_Preliminary_Analysis_R_Report.docx
 
 The report covers the methodology, preprocessing, analysis, visualizations, and findings.
 
-📌 Quick Start
+#📌 Quick Start
 git clone <your-repository-url>
-
 cd Titanic-Data-Cleaning-R
-
 Rscript Titanic_Data_Cleaning.R
-
 After execution:
-
 outputs/
     └── titanic_cleaned.csv
-
 plots/
     ├── 01_missing_values.png
     ├── 02_age_distribution.png
@@ -774,6 +716,8 @@ plots/
     ├── 06_correlation_heatmap.png
     ├── 07_age_density_survival.png
     └── 08_survival_by_familysize.png
+
+
 ⭐ Project Highlights
 🚢 Titanic Dataset Analysis
 🧹 Advanced Data Cleaning
@@ -793,8 +737,8 @@ plots/
 🔄 Reproducible Workflow
 🚀 Ready for ML Extension
 👩‍💻 Author
-Divya Ahire
 
+Divya Ahire
 Data Science & Analytics | R | Python | Power BI | SQL
 
 
